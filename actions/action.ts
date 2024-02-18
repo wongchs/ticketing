@@ -2,8 +2,8 @@
 import { prisma } from "@/app/db";
 import { Status } from "@/utils/status";
 import { z } from "zod";
-import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 const FormSchema = z.object({
   id: z.string(),
@@ -54,4 +54,8 @@ export async function createTicket(data: FormData) {
 
   revalidatePath("/");
   redirect("/");
+}
+
+export async function getTickets() {
+  return await prisma.ticket.findMany();
 }
