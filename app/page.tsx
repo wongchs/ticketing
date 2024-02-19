@@ -16,7 +16,7 @@ export default async function Home({
 
   return (
     <>
-      <header className="flex justify-between items-center px-8 py-2">
+      <header className="bg-slate-100 flex justify-between items-center px-8 py-2">
         <h1 className="text-2xl">Tickets</h1>
         <Link href="/new">New</Link>
       </header>
