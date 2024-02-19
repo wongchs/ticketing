@@ -111,3 +111,24 @@ export async function deleteTicket(id: string) {
   revalidatePath("/");
   redirect("/");
 }
+
+export async function getFilteredTickets(query: string) {
+  try {
+    const tickets = await prisma.ticket.findMany({
+      where: {
+        OR: [
+          { title: { contains: query } },
+          { description: { contains: query } },
+        ],
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return tickets;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch tickets.");
+  }
+}
