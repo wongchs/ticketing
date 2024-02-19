@@ -102,3 +102,12 @@ export async function updateTicket(id: string, data: FormData) {
   revalidatePath("/");
   redirect("/");
 }
+
+export async function deleteTicket(id: string) {
+  await prisma.ticket.delete({
+    where: { id },
+  });
+
+  revalidatePath("/");
+  redirect("/");
+}
