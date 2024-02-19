@@ -5,10 +5,10 @@ import { Status } from "@/utils/status";
 export default function Page() {
   return (
     <>
-      <header className="flex justify-between mb-4 items-center">
+      <header className="px-8 py-2">
         <h1 className="text-2xl">New</h1>
       </header>
-      <form action={createTicket} className="flex gap-2 flex-col">
+      <form action={createTicket} className="flex gap-2 flex-col py-2 px-8">
         <label htmlFor="title">Title</label>
         <input
           type="text"
@@ -33,13 +33,13 @@ export default function Page() {
         <div className="flex gap-1 justify-end">
           <Link
             href=".."
-            className="border border-slate-300 text-slate-800 px-2 py-1 rounded hover:bg-slate-700 hover:text-slate-300 focus-within:bg-slate-700 outline-none"
+            className="border border-red-700 bg-red-700 text-slate-50 px-2 py-1 rounded hover:bg-slate-50 hover:text-red-700 focus-within:bg-slate-700 outline-none"
           >
             Cancel
           </Link>
           <button
             type="submit"
-            className="border border-slate-300 text-slate-800 px-2 py-1 rounded hover:bg-slate-700 hover:text-slate-300 focus-within:bg-slate-700 outline-none"
+            className="border border-green-600 bg-green-600 text-slate-50 px-2 py-1 rounded hover:bg-slate-50 hover:text-green-700 focus-within:bg-slate-700 outline-none"
           >
             Create
           </button>

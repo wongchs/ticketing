@@ -33,17 +33,17 @@ async function Tickets({ query }: TicketItemProps) {
 
           return (
             <div
-              className={`px-4 py-2 border border-solid border-slate-900 flex justify-between ${statusStyle}`}
+              className={`border border-solid border-slate-900 flex justify-between ${statusStyle}`}
               key={ticket.id}
             >
-              <div className="flex-col">
+              <div className="px-4 py-2">
                 <p>Issue: {ticket.title}</p>
                 <p>Description: {ticket.description}</p>
                 <p>{ticket.status}</p>
               </div>
-              <div className="flex flex-row gap-2 items-center">
+              <div className="flex flex-row gap-2 items-center bg-white  border border-l-black p-2">
                 <Link
-                  className="rounded-md border px-4 py-2 hover:bg-blue-500"
+                  className="border border-blue-600 bg-blue-600 text-slate-50 px-2 py-1 rounded hover:bg-slate-50 hover:text-blue-600 focus-within:bg-slate-700 outline-none"
                   href={`/entry/${ticket.id}/edit`}
                 >
                   <span>Edit</span>
