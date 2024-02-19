@@ -1,4 +1,5 @@
-import { getTickets } from "@/actions/action";
+import { getTickets, getTicketsTotalPages } from "@/actions/action";
+import Pagination from "@/components/Pagination";
 import Search from "@/components/Search";
 import Tickets from "@/components/Tickets";
 import Link from "next/link";
@@ -8,9 +9,13 @@ export default async function Home({
 }: {
   searchParams?: {
     query?: string;
+    page?: string;
   };
 }) {
   const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
+
+  const totalPages = await getTicketsTotalPages(query);
   const tickets = await getTickets();
   console.log(tickets);
 
@@ -24,7 +29,10 @@ export default async function Home({
       <div className="px-4 py-6">
         <Search placeholder="Search tickets..." />
       </div>
-      <Tickets query={query} />
+      <Tickets query={query} currentPage={currentPage} />
+      <div className="mt-5 flex w-full justify-center">
+        <Pagination totalPages={totalPages} />
+      </div>
     </>
   );
 }

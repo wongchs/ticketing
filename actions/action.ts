@@ -71,7 +71,7 @@ export async function getTicket(id: string) {
 }
 
 export async function updateTicket(id: string, data: FormData) {
-  const validatedFields = CreateTicket.safeParse({
+  const validatedFields = UpdateTicket.safeParse({
     title: data.get("title"),
     description: data.get("description"),
     status: data.get("status"),
@@ -112,7 +112,9 @@ export async function deleteTicket(id: string) {
   redirect("/");
 }
 
-export async function getFilteredTickets(query: string) {
+const ITEMS_PER_PAGE = 6;
+export async function getFilteredTickets(query: string, currentPage: number) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   try {
     const tickets = await prisma.ticket.findMany({
       where: {
@@ -124,11 +126,33 @@ export async function getFilteredTickets(query: string) {
       orderBy: {
         createdAt: "desc",
       },
+      skip: offset,
+      take: ITEMS_PER_PAGE,
     });
 
     return tickets;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch tickets.");
+  }
+}
+
+export async function getTicketsTotalPages(query: string) {
+  try {
+    const count = await prisma.ticket.count({
+      where: {
+        OR: [
+          { title: { contains: query } },
+          { description: { contains: query } },
+          { status: { contains: query } },
+        ],
+      },
+    });
+
+    const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number of tickets.");
   }
 }

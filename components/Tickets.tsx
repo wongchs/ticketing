@@ -4,10 +4,11 @@ import { getFilteredTickets } from "@/actions/action";
 
 type TicketItemProps = {
   query: string;
+  currentPage: number;
 };
 
-async function Tickets({ query }: TicketItemProps) {
-  const tickets = await getFilteredTickets(query);
+async function Tickets({ query, currentPage }: TicketItemProps) {
+  const tickets = await getFilteredTickets(query, currentPage);
 
   return (
     <>
