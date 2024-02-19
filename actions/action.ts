@@ -21,6 +21,10 @@ const CreateTicket = FormSchema.omit({
   id: true,
 });
 
+const UpdateTicket = FormSchema.omit({
+  id: true,
+});
+
 export async function createTicket(data: FormData) {
   const validatedFields = CreateTicket.safeParse({
     title: data.get("title"),
@@ -58,4 +62,43 @@ export async function createTicket(data: FormData) {
 
 export async function getTickets() {
   return await prisma.ticket.findMany();
+}
+
+export async function getTicket(id: string) {
+  return await prisma.ticket.findUnique({
+    where: { id },
+  });
+}
+
+export async function updateTicket(id: string, data: FormData) {
+  const validatedFields = CreateTicket.safeParse({
+    title: data.get("title"),
+    description: data.get("description"),
+    status: data.get("status"),
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Create Ticket.",
+    };
+  }
+
+  const { title, description, status } = validatedFields.data;
+
+  try {
+    await prisma.ticket.update({
+      where: { id },
+      data: {
+        title,
+        description,
+        status,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  revalidatePath("/");
+  redirect("/");
 }

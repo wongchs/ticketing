@@ -12,7 +12,7 @@ export default async function Home() {
         <h1 className="text-2xl">Tickets</h1>
         <Link href="/new">New</Link>
       </header>
-      <ul className="pl-4">
+      <ul className="px-4 flex flex-col gap-4">
         {tickets.map((ticket) => (
           <Tickets key={ticket.id} {...ticket} />
         ))}

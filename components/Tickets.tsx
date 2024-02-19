@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type TicketItemProps = {
   id: string;
   title: string;
@@ -8,10 +10,14 @@ type TicketItemProps = {
 function Tickets({ id, title, description, status }: TicketItemProps) {
   return (
     <>
-      <p>{id}</p>
-      <p>{title}</p>
-      <p>{description}</p>
-      <p>{status}</p>
+      <div className="py-2 px-4 border border-solid border-slate-900">
+        <p>Issue: {title}</p>
+        <p>Description: {description}</p>
+        <p>{status}</p>
+        <Link className="rounded-md border px-6 py-2" href={`/entry/${id}/edit`}>
+          Edit
+        </Link>
+      </div>
     </>
   );
 }
