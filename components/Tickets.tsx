@@ -29,21 +29,26 @@ async function Tickets({ query }: TicketItemProps) {
 
   return (
     <>
-      <div
-        className={`py-2 px-4 border border-solid border-slate-900 ${statusStyle}`}
-      >
+      <div className={`px-4 flex flex-col gap-4 ${statusStyle}`}>
         {tickets.map((ticket) => (
-          <div key={ticket.id}>
-            <p>Issue: {ticket.title}</p>
-            <p>Description: {ticket.description}</p>
-            <p>{ticket.status}</p>
-            <Link
-              className="rounded-md border px-6 py-2"
-              href={`/entry/${ticket.id}/edit`}
-            >
-              Edit
-            </Link>
-            <DeleteTicket id={ticket.id} />
+          <div
+            className="px-4 py-2 border border-solid border-slate-900 flex justify-between"
+            key={ticket.id}
+          >
+            <div className="flex-col">
+              <p>Issue: {ticket.title}</p>
+              <p>Description: {ticket.description}</p>
+              <p>{ticket.status}</p>
+            </div>
+            <div className="flex flex-row gap-2 items-center">
+              <Link
+                className="rounded-md border px-4 py-2 hover:bg-blue-500"
+                href={`/entry/${ticket.id}/edit`}
+              >
+                <span>Edit</span>
+              </Link>
+              <DeleteTicket id={ticket.id} />
+            </div>
           </div>
         ))}
       </div>

@@ -20,12 +20,11 @@ export default async function Home({
         <h1 className="text-2xl">Tickets</h1>
         <Link href="/new">New</Link>
       </header>
-      <Search placeholder="Search tickets..." />
-      {/* <ul className="px-4 flex flex-col gap-4">
-        {tickets.map((ticket) => ( */}
-          <Tickets query={query} />
-        {/* ))}
-      </ul> */}
+      <hr />
+      <div className="px-4 py-6">
+        <Search placeholder="Search tickets..." />
+      </div>
+      <Tickets query={query} />
     </>
   );
 }
