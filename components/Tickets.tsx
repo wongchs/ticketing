@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DeleteTicket from "./DeleteTicket";
 
 type TicketItemProps = {
   id: string;
@@ -14,9 +15,13 @@ function Tickets({ id, title, description, status }: TicketItemProps) {
         <p>Issue: {title}</p>
         <p>Description: {description}</p>
         <p>{status}</p>
-        <Link className="rounded-md border px-6 py-2" href={`/entry/${id}/edit`}>
+        <Link
+          className="rounded-md border px-6 py-2"
+          href={`/entry/${id}/edit`}
+        >
           Edit
         </Link>
+        <DeleteTicket id={id} />
       </div>
     </>
   );
