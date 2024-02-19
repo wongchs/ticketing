@@ -112,7 +112,7 @@ export async function deleteTicket(id: string) {
   redirect("/");
 }
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 5;
 export async function getFilteredTickets(query: string, currentPage: number) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   try {
