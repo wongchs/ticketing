@@ -34,7 +34,7 @@ async function Tickets({ query, currentPage }: TicketItemProps) {
 
           return (
             <div
-              className={`border rounded border-solid border-slate-900 flex justify-between ${statusStyle}`}
+              className={`border rounded border-solid flex justify-between ${statusStyle} shadow-lg`}
               key={ticket.id}
             >
               <div className="px-4 py-2">
@@ -42,7 +42,7 @@ async function Tickets({ query, currentPage }: TicketItemProps) {
                 <p>Description: {ticket.description}</p>
                 <p>{ticket.status}</p>
               </div>
-              <div className="flex flex-row gap-2 items-center bg-slate-100 border rounded-r border-l-black p-2">
+              <div className="flex flex-row gap-2 items-center bg-slate-100 p-2">
                 <Link
                   className="border border-blue-600 bg-blue-600 text-slate-50 px-2 py-1 rounded hover:bg-slate-50 hover:text-blue-600 focus-within:bg-slate-700 outline-none"
                   href={`/entry/${ticket.id}/edit`}
