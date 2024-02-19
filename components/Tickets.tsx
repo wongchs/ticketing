@@ -42,7 +42,7 @@ async function Tickets({ query, currentPage }: TicketItemProps) {
                 <p>Description: {ticket.description}</p>
                 <p>{ticket.status}</p>
               </div>
-              <div className="flex flex-row gap-2 items-center bg-slate-100 p-2">
+              <div className="flex flex-row gap-2 items-center bg-slate-100 p-6">
                 <Link
                   className="border border-blue-600 bg-blue-600 text-slate-50 px-2 py-1 rounded hover:bg-slate-50 hover:text-blue-600 focus-within:bg-slate-700 outline-none"
                   href={`/entry/${ticket.id}/edit`}
