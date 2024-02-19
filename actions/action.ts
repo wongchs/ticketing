@@ -121,6 +121,7 @@ export async function getFilteredTickets(query: string, currentPage: number) {
         OR: [
           { title: { contains: query } },
           { description: { contains: query } },
+          { status: { contains: query } },
         ],
       },
       orderBy: {
