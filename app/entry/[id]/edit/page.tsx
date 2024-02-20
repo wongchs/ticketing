@@ -8,7 +8,7 @@ async function Page({ params }: { params: { id: string } }) {
   const updateTicketWithId = updateTicket.bind(null, id);
 
   if (!ticket) {
-    return <div>loading</div>;
+    return <div>Loading</div>;
   }
 
   return (
