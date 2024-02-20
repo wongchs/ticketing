@@ -40,8 +40,10 @@ async function Page({ params }: { params: { id: string } }) {
           defaultValue={ticket.status}
           className="border border-slate-300 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-100"
         >
-          {Object.values(Status).map((status) => (
-            <option value={status}>{status}</option>
+          {Object.values(Status).map((status, index) => (
+            <option key={index} value={status}>
+              {status}
+            </option>
           ))}
         </select>
         <div className="flex gap-1 justify-end">
